@@ -14,7 +14,7 @@ const Footer = () => {
 	return (
 		<footer>
 			<div className={styles.footerText}>
-				© Invoice System| made with ♥ by Allister Mugaisi and Group
+				© Invoice System | made with ♥ by Allister Mugaisi and Group
 			</div>
 			{user && <FabButton />}
 		</footer>
