@@ -102,13 +102,13 @@ In the second terminal
 - Supply the following credentials
 
 ```
-DB_URL =
+DB_URL = mongodb://mongo:27017/Invoice
 PORT = 5000
-SECRET =
-SMTP_HOST =
-SMTP_PORT =
-SMTP_USER =
-SMTP_PASS =
+SECRET = JWT_SECRET_KEY_254
+SMTP_HOST = smtp.gmail.com
+SMTP_PORT = 587
+SMTP_USER = youremail@gmail.com
+SMTP_PASS = yourpassword
 
 ```
 
@@ -118,7 +118,72 @@ Please follow [This tutorial](https://dev.to/dalalrohit/how-to-connect-to-mongod
 $ cd server
 $ npm install (to install server-side dependencies)
 & npm start (to start the server)
+
 ```
+
+## Configuration and Setup for Docker
+
+Pull the respective images from docker hub [Hosted Docker Link](https://hub.docker.com/u/allisterhydra).
+Create a docker-compose.yml
+Paste in the following configuration YAML code to enable docker compose sync the three containers on the mern-app network
+
+```
+version: '3'
+services:
+  react-app:
+    image: react-app
+    build: ./client
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    networks:
+      - mern-app
+    volumes:
+      - ./client/:/usr/src/app
+      - /usr/src/app/node_modules
+  api-server:
+    image: api-server
+    build: ./server
+    ports:
+      - '5000:5000'
+    networks:
+      - mern-app
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:4.4-bionic
+    ports:
+      - '27017:27017'
+    networks:
+      - mern-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
+
+```
+
+Create a Makefike in the root folder and paste the following code
+
+```
+run-dev:
+	docker-compose up
+```
+
+Run the command
+
+```
+make run-dev
+```
+
+Your configured docker container should start up
 
 ## Troubleshooting
 
@@ -130,3 +195,12 @@ $ npm install html-pdf -g
 $ npm link html-pdf
 $ npm link phantomjs-prebuilt
 ```
+
+## Contributors
+
+Caroline Makena SCCJ/01437/2019
+Roy Uri SCCJ/01447/2019
+Emmanuel Sanko SCCJ/01438/2019
+Richard Ngatia SCCI/00780/2019
+Allister Mugaisi SCCJ/01451/2019
+John Wanjema SCCJ/01109/2019
