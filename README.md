@@ -170,7 +170,7 @@ volumes:
 
 ```
 
-Create a Makefike in the root folder and paste the following code
+Create a Makefile in the root folder and paste the following code
 
 ```
 run-dev:
@@ -198,9 +198,9 @@ $ npm link phantomjs-prebuilt
 
 ## Contributors
 
-Caroline Makena SCCJ/01437/2019
-Roy Uri SCCJ/01447/2019
-Emmanuel Sanko SCCJ/01438/2019
-Richard Ngatia SCCI/00780/2019
-Allister Mugaisi SCCJ/01451/2019
+Caroline Makena SCCJ/01437/2019\
+Roy Uri SCCJ/01447/2019\
+Emmanuel Sanko SCCJ/01438/2019\
+Richard Ngatia SCCI/00780/2019\
+Allister Mugaisi SCCJ/01451/2019\
 John Wanjema SCCJ/01109/2019
